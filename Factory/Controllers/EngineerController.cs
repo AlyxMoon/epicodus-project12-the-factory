@@ -44,13 +44,19 @@ namespace Factory.Controllers
     [HttpGet("{engineerId}")]
     public ActionResult Details (int engineerId)
     {
-      ViewBag.Machines = new SelectList(_db.Machines, "MachineId", "Name");
-
-      Engineer item = _db.Engineers
+      Engineer engineer = _db.Engineers
         .Include(engineer => engineer.Machines)
-        .SingleOrDefault(item => item.EngineerId == engineerId);
+        .SingleOrDefault(item => item.EngineerId == engineerId);      
 
-      return View(item);
+      IEnumerable<Machine> machines = _db.Machines
+        .AsEnumerable()
+        .Where(machine => engineer.Machines.All(engineerMachine => 
+          engineerMachine.MachineId != machine.MachineId
+        ));
+
+      ViewBag.Machines = new SelectList(machines, "MachineId", "Name");
+
+      return View(engineer);
     }
 
     [HttpGet("{engineerId}/remove")]
