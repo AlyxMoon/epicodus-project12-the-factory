@@ -6,7 +6,7 @@ services:
     ports:
       - '3306:3306'
     environment:
-      MYSQL_DATABASE: epicodus-week11-university-registrar
+      MYSQL_DATABASE: allister_kays
       MYSQL_ROOT_PASSWORD: epicodus
     volumes:
       - db_data:/var/lib/mysql
