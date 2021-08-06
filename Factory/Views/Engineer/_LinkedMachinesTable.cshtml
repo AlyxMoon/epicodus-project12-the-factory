@@ -1,0 +1,41 @@
+@using Factory.Models
+@model System.Collections.Generic.List<Machine>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Machine Name</th>
+      <th>Product Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (Model.Count == 0)
+    {
+      <tr><td colspan="5">No Licenses</td></tr>
+    }
+
+    @foreach (Machine machine in Model)
+    {
+      <tr>
+        <td>
+          <a
+            asp-controller="Machine"
+            asp-action="Details"
+            asp-route-machineId="@machine.MachineId"
+            class="btn btn-secondary btn-sm"
+          >See Details</a>
+          <a
+            asp-controller="Engineer"
+            asp-action="RemoveMachine"
+            asp-route-engineerId="@ViewBag.EngineerId"
+            asp-route-machineId="@machine.MachineId"
+            class="btn btn-danger btn-sm"
+          >Remove License</a>
+        </td>
+        <td>@machine.Name</td>
+        <td>@machine.Product</td>
+      </tr>
+    }
+  </tbody>
+</table>

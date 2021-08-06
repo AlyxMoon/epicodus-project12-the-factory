@@ -2,6 +2,7 @@
 @model Machine
 @{
   ViewData["Title"] = "Machines";
+  ViewBag.MachineId = Model.MachineId;
 }
 
 <h1>Machine Information</h1>
@@ -34,6 +35,6 @@
       </div>
     </form>
 
-    <partial name="/Views/Engineer/_EngineersTable.cshtml" model="@Model.Engineers" />
+    <partial name="_LinkedEngineersTable.cshtml" model="@Model.Engineers" />
   </div>
 </div>

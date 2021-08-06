@@ -84,5 +84,21 @@ namespace Factory.Controllers
 
       return RedirectToAction("Details", new { machineId });
     }
+
+    [HttpGet("{machineId}/machines/remove")]
+    public ActionResult RemoveEngineer (int machineId, int engineerId)
+    {
+      Machine machine = _db.Machines
+        .Include(machine => machine.Engineers)
+        .SingleOrDefault(machine => machine.MachineId == machineId);
+
+      Engineer engineer = _db.Engineers
+        .SingleOrDefault(engineer => engineer.EngineerId == engineerId);
+
+      machine.Engineers.Remove(engineer);
+      _db.SaveChanges();
+
+      return RedirectToAction("Details", new { machineId });
+    }
   }
 }
