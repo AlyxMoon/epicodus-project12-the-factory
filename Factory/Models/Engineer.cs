@@ -10,6 +10,6 @@ namespace Factory.Models
 
     public string Name { get; set; }
 
-    public virtual ICollection<Machine> Machines { get; set; }
+    public virtual IList<Machine> Machines { get; set; }
   }
 }

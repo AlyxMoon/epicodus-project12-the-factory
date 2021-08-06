@@ -16,6 +16,6 @@ namespace Factory.Models
 
     public int ItemsPerCycle { get; set; }
 
-    public virtual ICollection<Engineer> Engineers { get; set; }
+    public virtual IList<Engineer> Engineers { get; set; }
   }
 }
