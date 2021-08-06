@@ -13,4 +13,12 @@
 
 <h2>Machines Licensed For</h2>
 
+<form asp-action="Create">
+  <select
+    asp-items="@ViewBag.Machines"
+    class="form-select"
+    required
+  ></select>
+</form>
+
 <partial name="/Views/Machine/_MachinesTable.cshtml" model="@Model.Machines" />

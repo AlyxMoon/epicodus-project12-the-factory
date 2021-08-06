@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Factory.Models;
 
@@ -43,6 +44,8 @@ namespace Factory.Controllers
     [HttpGet("{engineerId}")]
     public ActionResult Details (int engineerId)
     {
+      ViewBag.Machines = new SelectList(_db.Machines, "MachineId", "Name");
+
       Engineer item = _db.Engineers
         .Include(engineer => engineer.Machines)
         .SingleOrDefault(item => item.EngineerId == engineerId);
