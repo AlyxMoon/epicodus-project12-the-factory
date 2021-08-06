@@ -17,12 +17,19 @@ namespace Factory.Controllers
     }
 
     [HttpGet]
-    public ActionResult Index () { 
+    public ActionResult Index () 
+    { 
       List<Machine> machines = _db.Machines
         .Include(machine => machine.Engineers)
         .ToList();
 
       return View(machines); 
+    }
+
+    [HttpGet("new")]
+    public ActionResult AddNew ()
+    {
+      return View();
     }
 
     [HttpPost]

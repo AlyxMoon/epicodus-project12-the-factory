@@ -1,6 +1,11 @@
+@using Factory.Models
+@model System.Collections.Generic.List<Engineer>
 @{
   ViewData["Title"] = "Engineers";
 }
 
 <h1>Welcome to the factory</h1>
 <h2>The factory must grow</h2>
+
+<partial name="_FormAddNew" model="new Engineer()" />
+<partial name="_EngineersTable" model="Model" />

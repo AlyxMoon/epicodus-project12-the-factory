@@ -1,13 +1,13 @@
-@model Factory.Models.Machine
+@model Factory.Models.Engineer
 
 <section class="card">
   <div class="card-header">
-    <h2 class="card-title">Create a new machine</h2>
+    <h2 class="card-title">Create a new engineer</h2>
   </div>
 
   <div class="card-body">
     <form 
-      asp-controller="Machine"
+      asp-controller="Engineer"
       asp-action="Create"
     >
       <div class="row mb-3">
@@ -22,22 +22,10 @@
         />
       </div>
 
-      <div class="row mb-3">
-        <label 
-          asp-for="Product"
-          class="col-sm-2 col-form-label"
-        ></label>
-        <input 
-          asp-for="Product"
-          class="form-control"
-          required
-        />
-      </div>
-
       <button 
         type="submit"
         class="btn btn-primary"
-      >Create Machine</button>
+      >Create Engineer</button>
     </form>
   </div>
 </section>

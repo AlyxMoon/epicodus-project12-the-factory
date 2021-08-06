@@ -1,0 +1,48 @@
+@using Factory.Models
+@model System.Collections.Generic.List<Engineer>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (Model.Count == 0)
+    {
+      <tr><td colspan="5">No engineers Yet</td></tr>
+    }
+
+    @foreach (Engineer engineer in Model)
+    {
+      <tr>
+        <td>
+          <a
+            asp-controller="Engineer"
+            asp-action="Details"
+            asp-route-machineId="@engineer.Id"
+            class="btn btn-secondary btn-sm"
+          >See Details</a>
+          <a
+            asp-controller="Machine"
+            asp-action="Index"
+            class="btn btn-secondary btn-sm"
+          >See Machines</a>
+          <a
+            asp-controller="Machine"
+            asp-action="AddNew"
+            class="btn btn-primary btn-sm"
+          >Add Machine</a>
+          <a
+            asp-controller="Engineer"
+            asp-action="Remove"
+            asp-route-engineerId="@engineer.Id"
+            class="btn btn-danger btn-sm"
+          >Delete</a>
+        </td>
+        <td>@engineer.Name</td>
+      </tr>
+    }
+  </tbody>
+</table>
