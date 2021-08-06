@@ -62,5 +62,21 @@ namespace Factory.Controllers
       
       return RedirectToAction("Index");
     }
+
+    [HttpPost("{engineerId}/machines/add")]
+    public ActionResult AddMachine (int engineerId, int machineId)
+    {
+      Engineer engineer = _db.Engineers
+        .Include(engineer => engineer.Machines)
+        .SingleOrDefault(engineer => engineer.EngineerId == engineerId);
+
+      Machine machine = _db.Machines
+        .SingleOrDefault(machine => machine.MachineId == machineId);
+
+      engineer.Machines.Add(machine);
+      _db.SaveChanges();
+
+      return RedirectToAction("Details", new { engineerId });
+    }
   }
 }

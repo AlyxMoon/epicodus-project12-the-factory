@@ -11,14 +11,29 @@
   <dd>@Model.Name</dd>
 </dl>
 
-<h2>Machines Licensed For</h2>
 
-<form asp-action="Create">
-  <select
-    asp-items="@ViewBag.Machines"
-    class="form-select"
-    required
-  ></select>
-</form>
+<div class="card">
+  <div class="card-header">
+    <h2>Machines Licensed For</h2>
+  </div>
 
-<partial name="/Views/Machine/_MachinesTable.cshtml" model="@Model.Machines" />
+  <div class="card-body">
+    <form 
+      asp-controller="Engineer"
+      asp-action="AddMachine"
+      asp-route-engineerId="@Model.EngineerId"
+    >
+      <div class="input-group">
+        <button type="submit" class="btn btn-primary">Add Machine License</button>
+        <select
+          asp-items="@ViewBag.Machines"
+          name="machineId"
+          class="form-select"
+          required
+        ></select>
+      </div>
+    </form>
+
+    <partial name="/Views/Machine/_MachinesTable.cshtml" model="@Model.Machines" />
+  </div>
+</div>
