@@ -4,4 +4,36 @@
   ViewData["Title"] = "Machines";
 }
 
-Machine Stuff
+<h1>Machine Information</h1>
+
+<dl>
+  <dt>Name</dt>
+  <dd>@Model.Name</dd>
+</dl>
+
+
+<div class="card">
+  <div class="card-header">
+    <h2>Engineers Licensed For This Machine</h2>
+  </div>
+
+  <div class="card-body">
+    <form 
+      asp-controller="Machine"
+      asp-action="AddEngineer"
+      asp-route-machineId="@Model.MachineId"
+    >
+      <div class="input-group">
+        <button type="submit" class="btn btn-primary">License Engineer</button>
+        <select
+          asp-items="@ViewBag.Engineers"
+          name="engineerId"
+          class="form-select"
+          required
+        ></select>
+      </div>
+    </form>
+
+    <partial name="/Views/Engineer/_EngineersTable.cshtml" model="@Model.Engineers" />
+  </div>
+</div>

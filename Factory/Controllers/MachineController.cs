@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Factory.Models;
 
@@ -43,9 +44,19 @@ namespace Factory.Controllers
     [HttpGet("{machineId}")]
     public ActionResult Details (int machineId)
     {
-      Machine item = _db.Machines.SingleOrDefault(item => item.MachineId == machineId);
+      Machine machine = _db.Machines
+        .Include(machine => machine.Engineers)
+        .SingleOrDefault(item => item.MachineId == machineId);      
 
-      return View(item);
+      IEnumerable<Engineer> engineers = _db.Engineers
+        .AsEnumerable()
+        .Where(engineer => machine.Engineers.All(engineerMachine => 
+          engineerMachine.EngineerId != engineer.EngineerId
+        ));
+
+      ViewBag.Engineers = new SelectList(engineers, "EngineerId", "Name");
+
+      return View(machine);
     }
 
     [HttpGet("{machineId}/remove")]
@@ -56,6 +67,22 @@ namespace Factory.Controllers
       _db.SaveChanges();
       
       return RedirectToAction("Index");
+    }
+
+    [HttpPost("{machineId}/machines/add")]
+    public ActionResult AddEngineer (int machineId, int engineerId)
+    {
+      Machine machine = _db.Machines
+        .Include(machine => machine.Engineers)
+        .SingleOrDefault(machine => machine.MachineId == machineId);
+
+      Engineer engineer = _db.Engineers
+        .SingleOrDefault(engineer => engineer.EngineerId == engineerId);
+
+      machine.Engineers.Add(engineer);
+      _db.SaveChanges();
+
+      return RedirectToAction("Details", new { machineId });
     }
   }
 }
