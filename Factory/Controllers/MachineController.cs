@@ -43,7 +43,7 @@ namespace Factory.Controllers
     [HttpGet("{machineId}")]
     public ActionResult Details (int machineId)
     {
-      Machine item = _db.Machines.SingleOrDefault(item => item.Id == machineId);
+      Machine item = _db.Machines.SingleOrDefault(item => item.MachineId == machineId);
 
       return View(item);
     }
@@ -51,7 +51,7 @@ namespace Factory.Controllers
     [HttpGet("{machineId}/remove")]
     public ActionResult Remove (int machineId)
     {
-      Machine item = _db.Machines.FirstOrDefault(item => item.Id == machineId);
+      Machine item = _db.Machines.FirstOrDefault(item => item.MachineId == machineId);
       _db.Machines.Remove(item);
       _db.SaveChanges();
       

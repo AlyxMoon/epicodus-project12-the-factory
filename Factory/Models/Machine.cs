@@ -6,7 +6,7 @@ namespace Factory.Models
   [Table("machines")]
   public class Machine
   {
-    public int Id { get; set; }
+    public int MachineId { get; set; }
 
     public string Name { get; set; }
 

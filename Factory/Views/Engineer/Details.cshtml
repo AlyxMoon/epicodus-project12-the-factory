@@ -4,4 +4,13 @@
   ViewData["Title"] = "Engineers";
 }
 
-Engineer Stuff
+<h1>Engineer Information</h1>
+
+<dl>
+  <dt>Name</dt>
+  <dd>@Model.Name</dd>
+</dl>
+
+<h2>Machines Licensed For</h2>
+
+<partial name="/Views/Machine/_MachinesTable.cshtml" model="@Model.Machines" />

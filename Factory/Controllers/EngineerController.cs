@@ -43,7 +43,9 @@ namespace Factory.Controllers
     [HttpGet("{engineerId}")]
     public ActionResult Details (int engineerId)
     {
-      Engineer item = _db.Engineers.SingleOrDefault(item => item.Id == engineerId);
+      Engineer item = _db.Engineers
+        .Include(engineer => engineer.Machines)
+        .SingleOrDefault(item => item.EngineerId == engineerId);
 
       return View(item);
     }
@@ -51,7 +53,7 @@ namespace Factory.Controllers
     [HttpGet("{engineerId}/remove")]
     public ActionResult Remove (int engineerId)
     {
-      Engineer item = _db.Engineers.FirstOrDefault(item => item.Id == engineerId);
+      Engineer item = _db.Engineers.FirstOrDefault(item => item.EngineerId == engineerId);
       _db.Engineers.Remove(item);
       _db.SaveChanges();
       
