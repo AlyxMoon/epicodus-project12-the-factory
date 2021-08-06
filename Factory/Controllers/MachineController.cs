@@ -22,7 +22,7 @@ namespace Factory.Controllers
         .Include(machine => machine.Engineers)
         .ToList();
 
-      return View(); 
+      return View(machines); 
     }
 
     [HttpPost]

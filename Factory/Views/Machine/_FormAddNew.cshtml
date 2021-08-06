@@ -1,0 +1,40 @@
+@model Factory.Models.Machine
+
+<section class="card">
+  <div class="card-header">
+    <h2 class="card-title">Create a new machine</h2>
+  </div>
+
+  <div class="card-body">
+    <form asp-action="Create">
+      <div class="row mb-3">
+        <label 
+          asp-for="Name"
+          class="col-sm-2 col-form-label"
+        ></label>
+        <input 
+          asp-for="Name"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="row mb-3">
+        <label 
+          asp-for="Product"
+          class="col-sm-2 col-form-label"
+        ></label>
+        <input 
+          asp-for="Product"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <button 
+        type="submit"
+        class="btn btn-primary"
+      >Create Machine</button>
+    </form>
+  </div>
+</section>

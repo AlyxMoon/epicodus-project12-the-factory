@@ -8,7 +8,9 @@ namespace Factory.Models
   {
     public int Id { get; set; }
 
-    public int Product { get; set; }
+    public string Name { get; set; }
+
+    public string Product { get; set; }
 
     public int CycleTime { get; set; }
 
