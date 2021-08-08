@@ -1,6 +1,13 @@
+@model Factory.ViewModels.AllEngineersAndMachines
 @{
   ViewData["Title"] = "Home Page";
 }
 
 <h1>Welcome to the factory</h1>
 <h2>The factory must grow</h2>
+
+<h3>Engineers</h3>
+<partial name="/Views/Engineer/_EngineersTable.cshtml" model="@Model.Engineers" />
+
+<h3>Machines</h3>
+<partial name="/Views/Machine/_MachinesTable.cshtml" model="@Model.Machines" />
