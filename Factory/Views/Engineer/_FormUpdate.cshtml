@@ -1,0 +1,36 @@
+@model Factory.Models.Engineer
+
+<section class="card my-3">
+  <div class="card-header">
+    <h2 class="card-title">Edit Engineer</h2>
+  </div>
+
+  <div class="card-body">
+    <form 
+      asp-controller="Engineer"
+      asp-action="Edit"
+      asp-route-engineerId="@Model.EngineerId"
+    >
+      <input type="hidden" asp-for="EngineerId" />
+
+      <div class="row mb-3">
+        <label 
+          asp-for="Name"
+          class="col-sm-2 col-form-label"
+        ></label>
+        <div class="col-sm-10">
+          <input 
+            asp-for="Name"
+            class="form-control"
+            required
+          />
+        </div>
+      </div>
+
+      <button 
+        type="submit"
+        class="btn btn-primary"
+      >Update</button>
+    </form>
+  </div>
+</section>

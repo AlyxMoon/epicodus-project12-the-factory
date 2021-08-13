@@ -7,6 +7,13 @@
 
 <h1>Engineer Information</h1>
 
+<a 
+  asp-controller="Engineer"
+  asp-action="Edit"
+  asp-route-engineerId="@Model.EngineerId"
+  class="btn btn-secondary" 
+>Edit</a>
+
 <dl>
   <dt>Name</dt>
   <dd>@Model.Name</dd>
