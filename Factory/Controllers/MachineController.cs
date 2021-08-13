@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -57,6 +58,31 @@ namespace Factory.Controllers
       ViewBag.Engineers = new SelectList(engineers, "EngineerId", "Name");
 
       return View(machine);
+    }
+
+    [HttpGet("{machineId}/edit")]
+    public ActionResult Edit (int machineId)
+    {
+      Machine machine = _db.Machines
+        .SingleOrDefault(item => item.MachineId == machineId);
+
+      return View(machine);
+    }
+
+    [HttpPost("{machineId}/edit")]
+    public async Task<ActionResult> EditPost (int machineId)
+    {
+      Machine machine = await _db.Machines
+        .SingleOrDefaultAsync(item => item.MachineId == machineId);
+
+      if (await TryUpdateModelAsync<Machine>(machine, "", 
+        m => m.Name, m => m.Product
+      ))
+      {
+        await _db.SaveChangesAsync();
+      }
+
+      return RedirectToAction("Details", new { machineId });
     }
 
     [HttpGet("{machineId}/remove")]

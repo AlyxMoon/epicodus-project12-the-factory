@@ -7,9 +7,18 @@
 
 <h1>Machine Information</h1>
 
+<a 
+  asp-controller="Machine"
+  asp-action="Edit"
+  asp-route-machineId="@Model.MachineId"
+  class="btn btn-secondary" 
+>Edit</a>
+
 <dl>
   <dt>Name</dt>
   <dd>@Model.Name</dd>
+  <dt>Product</dt>
+  <dd>@Model.Product</dd>
 </dl>
 
 
